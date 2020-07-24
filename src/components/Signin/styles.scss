@@ -1,0 +1,17 @@
+.SignIn {
+    display: flex;
+    //width: 50%;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+    margin: 0 20%;
+    margin-bottom: 10%;
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    .social-btns {
+        margin-top: 20px;
+    }
+}
