@@ -15,9 +15,8 @@ const Login = props => {
             <div className="wrap">
                 <div className="theme">
                     <div className="contents">
-                        <p className="mainText">A few clicks away from creating your account <br />
-                            <p className="subText"> Start your journey in minutes. <br /> Save time and money</p></p>
-
+                        <p className="mainText">A few clicks away from creating your account</p>
+                        <p className="subText"> Start your journey in minutes. <br /> Save time and money</p>
                     </div>
 
                 </div>

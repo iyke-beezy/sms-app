@@ -5,6 +5,7 @@ const INITIALSTATE = {
     signInSuccess: false,
     signUpSuccess: false,
     signUpError: [],
+    signInError: [],
     resetPasswordSuccess: false,
     resetPasswordError: []
 }
@@ -19,6 +20,11 @@ const userReducer = (state = INITIALSTATE, action) => {
             return {
                 ...state,
                 signInSuccess: action.payload
+            }
+        case userTypes.SIGN_IN_ERROR:
+            return {
+                ...state,
+                signInError: action.payload
             }
         case userTypes.SIGN_UP_SUCCESS:
             return {

@@ -13,13 +13,35 @@ export const resetAuthForm = () => ({
 export const signInUser = ({ email, password }) => async dispatch => {
     try {
         await auth.signInWithEmailAndPassword(email, password)
-        dispatch({
-            type: userTypes.SIGN_IN_SUCCESS,
-            payload: true
-        })
+            .then(() => {
+                dispatch({
+                    type: userTypes.SIGN_IN_SUCCESS,
+                    payload: true
+                })
+            })
+            .catch((err) => {
+                switch (err.code) {
+                    case "auth/wrong-password":
+                        return (
+                            dispatch({
+                                type: userTypes.SIGN_IN_ERROR,
+                                payload: ['Incorrect Password!']
+                            })
+                        )
+                    case "auth/user-not-found":
+                        return (
+                            dispatch({
+                                type: userTypes.SIGN_IN_ERROR,
+                                payload: ['User Not Found! Please register if you don\'t have an account. ']
+                            })
+                        )
+                    default:
+                        return console.log(err)
+                }
 
+            })
     } catch (err) {
-        // console.log(err)
+        //console.log(err)
     }
 }
 
@@ -84,7 +106,7 @@ export const signInWithGoogle = () => async dispatch => {
     }
 }
 
-export const signInWIthFacebook = () => async dispatch => {
+export const signInWithFacebook = () => async dispatch => {
     try {
         await auth.signInWithPopup(FacebookProvider)
             .then(() => {

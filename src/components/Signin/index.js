@@ -1,50 +1,115 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.scss'
 import { FormInput, FormButton } from '../Forms'
+//import { Form } from 'antd'
 import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { signInUser, signInWithGoogle, signInWithFacebook, resetAuthForm } from './../../redux/User/user.actions'
+import { Link, withRouter } from 'react-router-dom'
+
+const mapState = ({ user }) => ({
+    signInSuccess: user.signInSuccess,
+    signInError: user.signInError
+})
 
 const Signin = props => {
+
+    const dispatch = useDispatch()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [errors, setErrors] = useState([]);
+    const { signInSuccess, signInError } = useSelector(mapState)
+
+    //sign in Success
+    useEffect(() => {
+        if (signInSuccess) {
+            resetForm()
+            dispatch(resetAuthForm())
+            props.history.push('/')
+        }
+    }, [signInSuccess])
+
+
+    //sign in failure
+    useEffect(() => {
+        if (Array.isArray(signInError) && signInError.length > 0) {
+            setErrors(signInError)
+        }
+    }, [signInError])
+
+    const resetForm = () => {
+        setEmail('')
+        setPassword('')
+        setErrors([])
+    }
+
+    //sign in user on form submit
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(signInUser({ email, password }))
+    }
+
+    //facebook sign in
+    const handleFacebookSignIn = () => {
+        dispatch(signInWithFacebook())
+    }
+
+    //google sign in
+    const handleGoogleSignIn = () => {
+        dispatch(signInWithGoogle())
+    }
+
+
     return (
         <div className="SignIn">
             <h1> Sign In</h1>
-            <form>
+            {errors && (
+                <ul>
+                    {errors.map((err, index) => (
+                        <li key={index}>
+                            {err}
+                        </li>
+                    ))}
+                </ul>
+            )}
+            <form onSubmit={handleSubmit}>
                 <FormInput
                     type="email"
                     name="email"
                     placeholder="Email Address"
-
+                    required={true}
+                    handleChange={e => setEmail(e.target.value)}
                 />
 
                 <FormInput
                     type="password"
                     name="password"
                     placeholder="Password"
-
+                    required={true}
+                    handleChange={e => setPassword(e.target.value)}
                 />
                 <Link to="/">
                     Reset Password
                 </Link>
                 <div className="Buttons">
 
-                    <FormButton>
+                    <FormButton htmlType="submit">
                         Login
                     </FormButton>
                     <div className="social-btns">
-                        <FormButton icon={<GoogleOutlined />}>
+                        <FormButton icon={<GoogleOutlined />} onClick={handleGoogleSignIn}>
                             Sign In with Google
                         </FormButton>
-                        <FormButton icon={<FacebookOutlined />}>
+                        <FormButton icon={<FacebookOutlined />} onClick={handleFacebookSignIn}>
                             Sign In with FaceBook
                         </FormButton>
                     </div>
                 </div>
-
-
             </form>
         </div>
 
     )
 }
 
-export default Signin
+export default withRouter(Signin)

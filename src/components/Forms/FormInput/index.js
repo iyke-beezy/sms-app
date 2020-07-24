@@ -7,7 +7,7 @@ import { Input } from 'antd';
 const FormInput = ({handleChange, ...otherprops}) => {
     return (
         <div className="formRow">
-            <Input size="large" onChange = {handleChange} {...otherprops} />
+            <Input size="large" onChange={handleChange} {...otherprops} />
         </div>
     )
 }
