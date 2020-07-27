@@ -10,9 +10,11 @@ import 'antd/dist/antd.css';
 import Homepage from './pages/Homepage'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Reset from './pages/Reset'
 
 //layouts
 import MainLayout from './layouts/MainLayout'
+
 
 
 const App = props => {
@@ -46,6 +48,7 @@ const App = props => {
         <Route path="/signup" render={() =>
           <Register />
         } />
+        <Route path="/reset" render={() => <Reset />} />
       </Switch>
     </div>
   );
