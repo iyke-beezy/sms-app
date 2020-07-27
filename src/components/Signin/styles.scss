@@ -9,6 +9,7 @@
 
     h1 {
         margin-bottom: 20px;
+        text-align: center;
     }
 
     li {
@@ -18,7 +19,30 @@
         color: red;
     }
 
-    .social-btns {
-        margin-top: 20px;
+    .Buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+
+        button {
+            &:first-child {
+                color: white;
+                background-color: #005fff;
+                margin-right: 10px;
+                border: 0
+            }
+
+            &:last-child {
+                color: #005fff;
+                border-color: #005fff;
+            }
+        }
     }
+            .social-btns {
+                display: flex;
+                flex-direction: column;
+                margin-top: 20px;
+            }
 }

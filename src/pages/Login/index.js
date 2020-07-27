@@ -13,15 +13,15 @@ const Login = props => {
     return (
         <div className="container">
             <div className="wrap">
-                <div className="theme">
+                <div className="Login-theme">
                     <div className="contents">
-                        <p className="mainText">A few clicks away from creating your account</p>
-                        <p className="subText"> Start your journey in minutes. <br /> Save time and money</p>
+                        <p className="mainText">Welcome back aboard!</p>
+                        <p className="subText"> Relax and login. <br /> Time is money!</p>
                     </div>
 
                 </div>
 
-                <div className="forms">
+                <div className="Login-forms">
                     <div className="wrapper fade-in">
                         <Signin />
 

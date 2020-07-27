@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './styles.scss'
 import { FormInput, FormButton } from '../Forms'
-//import { Form } from 'antd'
 import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -73,6 +72,7 @@ const Signin = props => {
                     ))}
                 </ul>
             )}
+
             <form onSubmit={handleSubmit}>
                 <FormInput
                     type="email"
@@ -89,22 +89,30 @@ const Signin = props => {
                     required={true}
                     handleChange={e => setPassword(e.target.value)}
                 />
-                <Link to="/">
-                    Reset Password
-                </Link>
                 <div className="Buttons">
-
                     <FormButton htmlType="submit">
                         Login
                     </FormButton>
-                    <div className="social-btns">
-                        <FormButton icon={<GoogleOutlined />} onClick={handleGoogleSignIn}>
-                            Sign In with Google
+
+                    <FormButton>
+                        <Link to="/signup">
+                            Sign Up
+                    </Link>
+
+                    </FormButton>
+                </div>
+                <FormButton type='link'>
+                    <Link to="/reset">
+                        Reset Password
+                    </Link>
+                </FormButton>
+                <div className="social-btns">
+                    <FormButton icon={<GoogleOutlined />} onClick={handleGoogleSignIn}>
+                        Sign In with Google
                         </FormButton>
-                        <FormButton icon={<FacebookOutlined />} onClick={handleFacebookSignIn}>
-                            Sign In with FaceBook
+                    <FormButton icon={<FacebookOutlined />} onClick={handleFacebookSignIn}>
+                        Sign In with FaceBook
                         </FormButton>
-                    </div>
                 </div>
             </form>
         </div>

@@ -1,0 +1,44 @@
+.SignUp {
+    display: flex;
+    //width: 50%;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+    margin: 0 20%;
+    margin-bottom: 8%;
+
+    h1 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    li {
+        list-style-type: none;
+        font-size: 1.8rem;
+        text-align: center;
+        color: red;
+    }
+
+    .Buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+
+        button {
+            &:first-child {
+                color: white;
+                background-color: #005fff;
+                margin-right: 10px;
+                border: 0
+            }
+
+            &:last-child {
+                color: #005fff;
+                border-color: #005fff;
+            }
+        }
+    }
+
+}

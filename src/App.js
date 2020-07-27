@@ -18,22 +18,21 @@ import MainLayout from './layouts/MainLayout'
 const App = props => {
   const dispatch = useDispatch();
 
-  useEffect(() => 
-    {
-      const authListener = auth.onAuthStateChanged(async userAuth => {
-        if(userAuth) {
-          const userRef = await handleUser(userAuth)
-          userRef.onSnapshot( snapshot => {
-            dispatch(setCurrentUser({
-              id: snapshot.id,
-              ...snapshot.data()
-            }))
-          })
-        }
-        dispatch(setCurrentUser(userAuth));
-      })
-      return () => authListener()
-    } ,[])
+  useEffect(() => {
+    const authListener = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await handleUser(userAuth)
+        userRef.onSnapshot(snapshot => {
+          dispatch(setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data()
+          }))
+        })
+      }
+      dispatch(setCurrentUser(userAuth));
+    })
+    return () => authListener()
+  }, [])
 
   return (
     <div className="App">
@@ -42,12 +41,11 @@ const App = props => {
           () => <Homepage />
         } />
         <Route path="/login" render={() =>
-            <Login />
+          <Login />
         } />
         <Route path="/signup" render={() =>
-          <MainLayout>
-            <Register />
-          </MainLayout>} />
+          <Register />
+        } />
       </Switch>
     </div>
   );
