@@ -1,0 +1,18 @@
+.DashboardHome {
+    .Header {
+        display: flex;
+        flex-direction: row;
+
+        button {
+            margin: 1rem;
+            color: #005fff;
+            border-color: #005fff;
+            font-family: inherit;
+        }
+
+        button:hover {
+            color: white;
+            background-color: #005fff;
+        }
+    }
+}
