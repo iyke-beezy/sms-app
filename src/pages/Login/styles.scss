@@ -11,13 +11,24 @@
         position: absolute;
 
         .Login-theme {
+            @keyframes animatedBackground {
+                from {
+                    background-position: 0 0;
+                }
+                to {
+                    background-position: 100% 0;
+                }
+            }
             flex: 0.4;
-            // height: 100%;
-            background-color: #005fff;
+            background-image: url("./../../assets/login-bg.png");
+            // background-repeat: no-repeat;
+            // background-size: cover;
+            background-position: 0px 0px;
+            background-repeat: repeat-x;
             color: white;
+            animation: animatedBackground 10s linear infinite alternate;
 
             .contents {
-                // height: 100%;
                 display: flex;
                 flex-direction: column;
                 flex-wrap: wrap;
@@ -82,7 +93,7 @@
                     width: 100%;
 
                     .details-icon {
-                        flex: 0.1
+                        flex: 0.1;
                     }
 
                     .details-text {
@@ -90,7 +101,6 @@
                         white-space: nowrap;
                     }
                 }
-
             }
 
             @keyframes fadeIn {

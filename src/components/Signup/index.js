@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons'
 import './styles.scss'
 
 //form components
 import { FormInput, FormButton } from '../Forms'
 
 //store actions
-import { signUpUser, resetAuthForm } from './../../redux/User/user.actions'
+import { signUpUser, signInWithGoogle, signInWithFacebook, resetAuthForm } from './../../redux/User/user.actions'
 
 const mapState = ({ user }) => ({
     signUpSuccess: user.signUpSuccess,
@@ -56,6 +57,16 @@ const Signup = props => {
             password,
             confirmPassword
         }))
+    }
+
+    //facebook sign in
+    const handleFacebookSignIn = () => {
+        dispatch(signInWithFacebook())
+    }
+
+    //google sign in
+    const handleGoogleSignIn = () => {
+        dispatch(signInWithGoogle())
     }
 
     return (
@@ -117,15 +128,14 @@ const Signup = props => {
                     </Link>
 
                     </FormButton>
-
-                    {/* <div className="social-btns">
-                        <FormButton icon={<GoogleOutlined />} onClick={handleGoogleSignIn}>
-                            Sign In with Google
+                </div>
+                <div className="social-btns">
+                    <FormButton icon={<GoogleOutlined />} onClick={handleGoogleSignIn}>
+                        Sign In with Google
                         </FormButton>
-                        <FormButton icon={<FacebookOutlined />} onClick={handleFacebookSignIn}>
-                            Sign In with FaceBook
+                    <FormButton icon={<FacebookOutlined />} onClick={handleFacebookSignIn}>
+                        Sign In with FaceBook
                         </FormButton>
-                    </div> */}
                 </div>
             </form>
         </div>

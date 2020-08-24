@@ -11,6 +11,7 @@ import Homepage from './pages/Homepage'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Reset from './pages/Reset'
+import Dashboard from './pages/Dashboard'
 
 //layouts
 import MainLayout from './layouts/MainLayout'
@@ -49,6 +50,7 @@ const App = props => {
           <Register />
         } />
         <Route path="/reset" render={() => <Reset />} />
+        <Route path="/dashboard" render={() => <Dashboard />} />
       </Switch>
     </div>
   );

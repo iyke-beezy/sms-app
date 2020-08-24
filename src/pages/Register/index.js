@@ -16,8 +16,8 @@ const Register = props => {
             <div className="wrap">
                 <div className="theme">
                     <div className="contents">
-                        <p className="mainText">A few clicks away from creating your account</p>
-                        <p className="subText"> Start your journey in minutes. <br /> Save time and money</p>
+                        <p className="mainText">Words are timeless</p>
+                        <p className="subText"> Let your messages create events.</p>
                     </div>
 
                 </div>

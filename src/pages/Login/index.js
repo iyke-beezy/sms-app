@@ -16,7 +16,7 @@ const Login = props => {
                 <div className="Login-theme">
                     <div className="contents">
                         <p className="mainText">Welcome back aboard!</p>
-                        <p className="subText"> Relax and login. <br /> Time is money!</p>
+                        <p className="subText"> Reach your world with your messages.</p>
                     </div>
 
                 </div>
