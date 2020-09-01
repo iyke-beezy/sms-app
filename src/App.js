@@ -15,6 +15,7 @@ import Dashboard from './pages/Dashboard'
 
 //layouts
 import MainLayout from './layouts/MainLayout'
+import TestFunction from './firebase/test';
 
 
 
@@ -51,6 +52,7 @@ const App = props => {
         } />
         <Route path="/reset" render={() => <Reset />} />
         <Route path="/dashboard" render={() => <Dashboard />} />
+        <Route path="/test" render={() => <TestFunction />} />
       </Switch>
     </div>
   );
