@@ -46,3 +46,30 @@ a, a:hover {
     padding: 0 10px;
     margin: 0 auto;
 }
+
+// miscellaneous
+.ant-layout-sider {
+    background-color: white !important;
+}
+
+.ant-layout-sider-trigger {
+    background-color: #e6f7ff !important;
+
+    color: #005fff !important;
+}
+
+.ant-layout-header {
+    background-color: #f4f6f8 !important;
+}
+
+.ant-layout {
+    background-color: #f4f6f8 !important;
+}
+
+.ant-menu-item-selected {
+    color: #005fff !important;
+}
+
+.ant-menu-inline .ant-menu-item::after {
+    border-color: #005fff !important;
+}

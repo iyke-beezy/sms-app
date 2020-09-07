@@ -1,18 +1,41 @@
 .DashboardHome {
+    // background-color: #f4f6f8;
+    
     .Header {
-        display: flex;
-        flex-direction: row;
+        // display: flex;
+        // flex-direction: row;
+        width: 100%;
+        margin: 1rem;
 
+        .leads {
+            float: right;
+        }
+        
+        
         button {
             margin: 1rem;
-            color: #005fff;
+            color: white;
             border-color: #005fff;
             font-family: inherit;
+            
+            background-color: #005fff;
         }
 
         button:hover {
             color: white;
             background-color: #005fff;
         }
+    }
+
+    .dashboard-content {
+        display: flex;
+        height: 100%;
+        width: 100%;
+
+        .balance {
+            flex: 10%;
+            
+        }
+        
     }
 }

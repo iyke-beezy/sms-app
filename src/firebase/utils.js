@@ -49,15 +49,13 @@ export const addContacts = async (contact, additionalData) => {
         throw new Error("Phone number already exists");
     }
 
-    const { name } = contact
     try {
         contactRef.add({
-            name,
-            phone,
+            ...contact,
             ...additionalData
         })
     } catch (err) {
-        // console.log(err)
+        console.log(err)
     }
 
     return contactRef
@@ -75,7 +73,8 @@ export const getContacts = async (uid) => {
     snapshot.forEach(doc => {
         contacts.push({
             id: doc.id,
-            ...doc.data()})
+            ...doc.data()
+        })
         //console.log(doc.id, '=>', doc.data());
     })
 
@@ -87,7 +86,7 @@ export const addGroups = async (group, additionalData) => {
     if (!group) return
 
     const { name } = group
-    const groupRef = firebase.collection('groups')
+    const groupRef = firestore.collection('groups')
     const snapshot = await groupRef.where('name', "==", name).get()
 
     if (!snapshot.empty) {
@@ -95,21 +94,29 @@ export const addGroups = async (group, additionalData) => {
     }
 
     const { contacts } = group
+    const timestamp = new Date()
     try {
-        groupRef.add({
+        //const newContacts = contacts.map((obj) => { return Object.assign({}, obj) })
+        contacts.map(obj => {
+            Object.keys(obj).forEach((key) => (obj[key] == null || obj[key] === 0) && delete obj[key]);
+        })
+        // console.log(newContacts)
+        const res = await firestore.collection('groups').add({
             name,
             contacts,
+            createdTime: timestamp,
             ...additionalData
         })
+        return res
     }
     catch (error) {
-        // console.log(error)
+        console.log(error)
     }
 
-    return groupRef
+
 }
 
-export const updateGroup = async (group, contacts) => {
+export const updateGroup = async (group, update) => {
 
     const { id } = group
     const groupRef = firestore.doc(`groups/${id}`)
@@ -118,16 +125,14 @@ export const updateGroup = async (group, contacts) => {
     if (!snapshot.exists) {
         throw new Error('Group doesn\'t exist')
     }
-        const { name } = group
-        try {
-            await groupRef.update({
-                name,
-                contacts
-            })
-        } catch (err) {
-            // console.log(err)
-        }
-    
+    try {
+        await groupRef.update({
+            ...update
+        })
+    } catch (err) {
+        // console.log(err)
+    }
+
     return groupRef
 }
 
@@ -145,7 +150,8 @@ export const getGroups = async (uid) => {
     snapshot.forEach(doc => {
         groups.push({
             id: doc.id,
-            ...doc.data()})
+            ...doc.data()
+        })
     })
 
     return groups

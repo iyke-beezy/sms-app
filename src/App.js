@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { auth, handleUser } from './firebase/utils'
 import { useDispatch } from 'react-redux'
 import { setCurrentUser } from './redux/User/user.actions'
+import { loadGroups, loadContacts } from './redux/Dashboard/dashboard.actions'
 import './default.scss';
 import 'antd/dist/antd.css';
 
@@ -27,6 +28,8 @@ const App = props => {
       if (userAuth) {
         const userRef = await handleUser(userAuth)
         userRef.onSnapshot(snapshot => {
+          dispatch(loadGroups(snapshot.id))
+          dispatch(loadContacts(snapshot.id))
           dispatch(setCurrentUser({
             id: snapshot.id,
             ...snapshot.data()

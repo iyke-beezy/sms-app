@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { getGroups, updateGroup, getContacts } from './utils'
+import { getGroups, updateGroup, getContacts, addContacts, addGroups } from './utils'
 import { Select } from 'antd'
+import { FormInput } from './../components/Forms'
+import CSVReader from 'react-csv-reader'
 
 
 const TestFunction = props => {
     const [contacts, setContacts] = useState([])
+    const [newContacts, setNewContacts] = useState()
     const [groups, setGroups] = useState()
+    const [groupName, setGroupName] = useState('')
     const [selectedContacts, setSelectedContacts] = useState([])
     const [selectedgroup, setSelectedgroup] = useState()
+    const [fname, setFname] = useState()
+    const [lname, setLname] = useState()
+    const [oname, setOname] = useState()
+    const [phone, setPhone] = useState()
 
 
     const getGroupsFromUID = async () => {
@@ -31,6 +39,7 @@ const TestFunction = props => {
         try {
             const data = await getContacts(uid)
             setContacts(data)
+            console.log(data)
         }
         catch (e) {
             console.log(e)
@@ -49,7 +58,7 @@ const TestFunction = props => {
 
     const updateGroupWithContact = async (e) => {
         e.preventDefault();
-        
+
         console.log(selectedgroup)
         try {
             const response = await updateGroup(selectedgroup, selectedContacts)
@@ -60,15 +69,61 @@ const TestFunction = props => {
         }
     }
 
+    const newContact = async (e) => {
+        e.preventDefault()
+        try {
+            const data = await addContacts({
+                fname,
+                lname,
+                oname,
+                phone,
+                user_id: "FKieDURmFLcWKdsMICtxY9nsiQA3"
+            })
+            console.log(data)
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    const newGroup = async (e) => {
+        e.preventDefault()
+        //console.log(contacts)
+        try {
+            const data = await addGroups({
+                name: groupName,
+                contacts: newContacts
+            }, {user_id : "FKieDURmFLcWKdsMICtxY9nsiQA3"})
+            console.log(data)
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
 
     useEffect(() => {
         getGroupsFromUID()
         getContactsFromUID()
     }, [])
 
+    const papaparseOptions = {
+        header: true,
+        dynamicTyping: true,
+        skipEmptyLines: 'greedy',
+        transformHeader: header =>
+            header
+                .toLowerCase()
+                .replace(/\W/g, '_')
+    }
+
+    const onFileLoaded = data => {
+        setNewContacts(data)
+    }
+
     return (
         <div>
-            <form onSubmit={updateGroupWithContact}>
+            <form onSubmit={newGroup}>
                 {/* <Select
                     name="group"
                     mode="multiple"
@@ -79,7 +134,7 @@ const TestFunction = props => {
                 >
                     {groups.map(group => <Select.Option key={group.id} value={group}>{group.name}</Select.Option>)}
                 </Select> */}
-                
+                {/*                 
                 <Select
                     name="contact"
                     mode="multiple"
@@ -88,14 +143,35 @@ const TestFunction = props => {
                     onChange={handleChange}
                     style={{ width: '100%' }}>
                     {contacts.map(contact => <Select.Option key={contact.id} value={contact.id}>{contact.name}</Select.Option>)}
-                </Select>
+                </Select> */}
+
+
+                <FormInput
+                    type="text"
+                    name="groupName"
+                    placeholder="Group Name"
+                    handleChange={e => setGroupName(e.target.value)}
+                />
+                <CSVReader
+                    label="Upload contacts with format, CSV ."
+                    // onFileLoaded={handleForce}
+                    // onError={handleDarkSideForce}
+                    parserOptions={papaparseOptions}
+                    onFileLoaded={onFileLoaded} />
+                {/* <FormInput
+                    type="text"
+                    name="phone"
+                    placeholder="Phone number"
+                    handleChange={e => setPhone(e.target.value)}
+                /> */}
                 <button name="submit" type="submit">
                     submit
             </button>
             </form>
-            <button onClick={getGroupsFromUID}>
+            <button onClick={getContactsFromUID}>
                 click me
             </button>
+
         </div>
     )
 }
