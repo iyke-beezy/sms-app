@@ -12,6 +12,7 @@ import { Layout, Breadcrumb } from 'antd';
 import DashboardMenu from './dashboardMenu'
 import DashboardHome from './DashboardHome'
 import Settings from './Settings'
+import DashboardSettings from './DashboardSettings';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -87,8 +88,11 @@ const Dashboard = props => {
                         {info.component}
                     </div>
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
             </Layout>
+            <Sider className="settings-menu">
+                <DashboardSettings />
+            </Sider>
         </Layout>
     )
 }

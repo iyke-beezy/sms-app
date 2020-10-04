@@ -1,23 +1,137 @@
 .DashboardHome {
     // background-color: #f4f6f8;
-    
-    .Header {
-        // display: flex;
-        // flex-direction: row;
-        width: 100%;
-        margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: right;
 
-        .leads {
-            float: right;
+    .dashboard-content {
+        flex: 0.7;
+        // max-height: 300px;
+        width: 100%;
+        padding: 3rem;
+        background-color: #fff;
+        box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 1rem;
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            // align-items: center;
+
+            .logs {
+                flex: 0.5;
+                // overflow: scroll;
+            }
+
+            .scheduled {
+                border-radius: 1.2rem;
+                // background-color: #f4f6f8;
+                flex: 0.4;
+                padding: 1.2rem;
+
+                .site-calendar-demo-card {
+                    width: 300px;
+                    border: 1px solid #f0f0f0;
+                    border-radius: 2px;
+                }
+                [data-theme="dark"] .site-calendar-demo-card {
+                    border: 1px solid #303030;
+                }
+                // button {
+                //     margin: 1rem;
+                //     color: white;
+                //     border-color: #005fff;
+                //     font-family: inherit;
+
+                //     background-color: #005fff;
+                //     box-shadow: 0 1px 20px rgba(0,0,0,0.1);
+                // }
+
+                // button:hover {
+                //     color: white;
+                //     background-color: #005fff;
+                //     box-shadow: 0px 15px 20px rgba(0,0,0,0.2);
+                // }
+            }
         }
-        
-        
+    }
+
+    // Messages
+    .Messages {
+        flex: 0.3;
+        max-height: 300px;
+        background-color: #00afef;
+        color: white;
+        margin: 0 2rem;
+        border-radius: 1.2rem;
+        box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1);
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+
+            .msg-header {
+                flex: 1;
+                width: 100%;
+
+                #row {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+
+                    h2 {
+                        text-align: center;
+                        padding-top: 1.2rem;
+                        flex: 0.5;
+                    }
+
+                    button {
+                        float: right;
+                        border-radius: 1rem;
+                    }
+                }
+            }
+
+            .msgs {
+                display: flex;
+                flex-direction: column;
+                margin-top: 1rem;
+                width: 100%;
+
+                .row {
+                    display: block;
+                    width: 100%;
+                    height: 20%;
+                    flex: 1;
+                    border: 1px solid #f4f6f8;
+                    background-color: #fff;
+                    border-radius: 1.2rem;
+
+                    h3 {
+                        text-align: center;
+                        border-bottom: 2px solid #f4f6f8;
+                    }
+
+                    p {
+                        padding: 1rem;
+                        color: #000;
+                    }
+                }
+            }
+        }
+
         button {
             margin: 1rem;
             color: white;
             border-color: #005fff;
             font-family: inherit;
-            
+
             background-color: #005fff;
         }
 
@@ -25,17 +139,5 @@
             color: white;
             background-color: #005fff;
         }
-    }
-
-    .dashboard-content {
-        display: flex;
-        height: 100%;
-        width: 100%;
-
-        .balance {
-            flex: 10%;
-            
-        }
-        
     }
 }

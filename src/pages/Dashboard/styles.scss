@@ -4,12 +4,11 @@
   margin: 16px;
 }
 
-.site-layout {
-  .site-layout-background {
-    // background: #fff;
-    // border-radius: 1.5rem;
-  }
-}
 [data-theme="dark"] .site-layout .site-layout-background {
   background: #141414;
+}
+
+.settings-menu {
+  // background-color: #0B0F23 !important;
+  min-width: 300px !important;
 }
