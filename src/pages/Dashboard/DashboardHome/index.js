@@ -19,6 +19,7 @@ import './styles.scss'
 import { FormButton } from '../../../components/Forms'
 import { setGroup, createGroup, } from './../../../redux/Dashboard/dashboard.actions'
 import { Calendar, Badge } from 'antd';
+import {Msgs} from '../../../components/DashboardComponents'
 
 const mapState = ({ dashboard }) => ({
     currentGroup: dashboard.currentGroup,
@@ -118,28 +119,7 @@ const DashboardHome = (props) => {
                 </div>
 
             </div>
-            <div className="Messages">
-                <div id="container">
-
-                    <div className="msg-header">
-                        <div id="row">
-                            <h2>Messages</h2>
-                            <Tooltip title="New Message">
-                                <FormButton icon={<PlusOutlined />} />
-                            </Tooltip>
-                        </div>
-
-
-                    </div>
-
-                    <div className="msgs">
-                        <div className="row">
-                            <h3>Group Name</h3>
-                            <p>Message</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <Msgs />
 
         </div>
     )

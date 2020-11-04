@@ -1,4 +1,31 @@
-.main-header {
-    width: 100%;
-    background: url('../../assets/webxlarge.png') no-repeat cover;
+.body {
+	.main-header {
+		width: 100%;
+		background: url("../../assets/webxlarge.png") no-repeat;
+		background-size: cover;
+		height: 100vh;
+
+		.main-text {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			height: 50vh;
+			width: 50%;
+			margin-top: 100px;
+			margin-left: 10rem;
+
+			p {
+				color: white;
+				font-size: 35px;
+			}
+		}
+	}
+
+	.about {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
